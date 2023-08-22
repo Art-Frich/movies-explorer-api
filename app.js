@@ -12,7 +12,7 @@ const { limiter } = require('./middlewares/limiter');
 const { cors } = require('./middlewares/cors');
 
 const {
-  PORT = 3000,
+  PORT = 3002,
   MONGO_URI = 'mongodb://localhost:27017/mestodb',
 } = process.env;
 
