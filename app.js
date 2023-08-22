@@ -13,7 +13,7 @@ const { cors } = require('./middlewares/cors');
 
 const {
   PORT = 3002,
-  MONGO_URI = 'mongodb://localhost:27017/mestodb',
+  MONGO_URI = 'mongodb://localhost:27017/bitfilmsdb',
 } = process.env;
 
 const { handleStartServerConsole, handleAppError, sendError } = require('./helpers/utils');
