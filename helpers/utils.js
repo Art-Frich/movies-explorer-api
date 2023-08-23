@@ -5,7 +5,10 @@ require('dotenv').config();
 module.exports.handleOtherRouts = (req, res, next) => next(new NotFoundRouteError());
 const NotFoundError = require('../castomErrors/NotFoundErrors/NotFoundError');
 const UncorrectDataError = require('../castomErrors/UncorrectDataError');
-const { fullerConsoleLine, ERROR_DEFAULT_TEXT, ERROR_DEFAULT_STATUS } = require('./constants');
+const {
+  fullerConsoleLine, ERROR_DEFAULT_TEXT, ERROR_DEFAULT_STATUS, MONGO_CONFLICT_STATUS,
+} = require('./constants');
+const UserAlreadyExistError = require('../castomErrors/UserAlreadyExistError');
 
 module.exports.handleStartServerConsole = (PORT) => {
   // eslint-disable-next-line no-console
@@ -31,7 +34,9 @@ module.exports.checkHandleSend = (promise, res, next, Err = NotFoundError) => {
       res.send({ data });
     })
     .catch((err) => {
-      if (err.name === 'ValidationError') {
+      if (err.code === MONGO_CONFLICT_STATUS) {
+        next(new UserAlreadyExistError());
+      } else if (err.name === 'ValidationError') {
         next(new UncorrectDataError());
       } else {
         next(err);

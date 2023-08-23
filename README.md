@@ -1,7 +1,7 @@
 # movies-explorer-api
 back-end for gradiation work YP
 
-### link on back-end: api.search-your-movies.nomoredomainsicu.ru
+### link on back-end: https://api.search-your-movies.nomoredomainsicu.ru/
 
 ### О проекте
 Это серверная часть выпускной работы YP. Её тема - сайт по подбору фильмов, который позволяет хранить "избранные".

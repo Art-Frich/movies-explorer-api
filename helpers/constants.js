@@ -6,7 +6,7 @@ module.exports.maxLen = 30;
 // eslint-disable-next-line no-useless-escape
 module.exports.regExpUrl = /^(http|https):\/\/[\w\-._~:/?#[\]\\@!\$&'()\*\+,;=]+\.[\w\/]{2,}#*$/;
 module.exports.regExpEmail = /[\w]+@[\w]+\.[a-z]{2,}/;
-module.exports.regExpUserId = /^[\w]{24}$/;
+module.exports.regExpObjectId = /^[\w]{24}$/;
 
 module.exports.LOGOUT_SUCC = 'Logout successfull';
 module.exports.EXPECTED_EMAIL_TEXT = 'Некорректный email. Пример: primer@gmail.com';

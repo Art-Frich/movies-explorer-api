@@ -1,6 +1,6 @@
 const { Joi } = require('celebrate');
 const {
-  nameSchema, emailSchema, linkSchema, reqStrSchema, reqNumSchema, userIdSchema,
+  nameSchema, emailSchema, linkSchema, reqStrSchema, reqNumSchema, userIdSchema, objectIdSchema,
 } = require('./celebrateValidateParams');
 
 module.exports.signinSchema = {
@@ -35,7 +35,7 @@ module.exports.addMovieSchema = {
     image: linkSchema,
     trailerLink: linkSchema,
     thumbnail: linkSchema,
-    owner: userIdSchema,
+    owner: objectIdSchema,
     movieId: reqNumSchema,
     nameRU: reqStrSchema,
     nameEN: reqStrSchema,
@@ -44,6 +44,6 @@ module.exports.addMovieSchema = {
 
 module.exports.checkMovieIdSchema = {
   params: Joi.object().keys({
-    movieId: reqStrSchema,
+    movieId: objectIdSchema,
   }),
 };
