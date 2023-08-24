@@ -9,6 +9,7 @@ const {
   fullerConsoleLine, ERROR_DEFAULT_TEXT, ERROR_DEFAULT_STATUS, MONGO_CONFLICT_STATUS,
 } = require('./constants');
 const UserAlreadyExistError = require('../castomErrors/UserAlreadyExistError');
+const { JWT_SECRET } = require('../configEnv');
 
 module.exports.handleStartServerConsole = (PORT) => {
   // eslint-disable-next-line no-console
@@ -45,11 +46,9 @@ module.exports.checkHandleSend = (promise, res, next, Err = NotFoundError) => {
 };
 
 module.exports.tokenCreate = (id, ageToken = '7d') => {
-  const { NODE_ENV, JWT_SECRET } = process.env;
-
   const token = jwt.sign(
     { _id: id },
-    NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+    JWT_SECRET,
     { expiresIn: ageToken },
   );
 

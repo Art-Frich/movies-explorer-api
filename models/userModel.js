@@ -38,6 +38,7 @@ userSchema.statics.findUserByCredentials = function (email, password) {
       const err = new AuthError(UNCORRECT_AUTH_TEXT);
 
       try {
+        // если user = null, тогда user(null).password вызывает AuthError
         return bcrypt.compare(password, user.password)
           .then((matched) => {
             if (!matched) throw err;

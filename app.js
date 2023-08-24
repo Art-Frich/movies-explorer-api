@@ -11,13 +11,9 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { limiter } = require('./middlewares/limiter');
 const { cors } = require('./middlewares/cors');
 
-const {
-  PORT = 3002,
-  MONGO_URI = 'mongodb://localhost:27017/bitfilmsdb',
-} = process.env;
-
 const { handleStartServerConsole, handleAppError, sendError } = require('./helpers/utils');
 const { mongooseOptions } = require('./helpers/constants');
+const { MONGO_URI, PORT } = require('./configEnv');
 
 try {
   const app = express();

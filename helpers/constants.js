@@ -49,6 +49,8 @@ module.exports.oldCookieOptions = {
 
 module.exports.DEFAULT_ALLOWED_METHODS = 'GET, PATCH, POST, DELETE';
 module.exports.allowedCors = [
-  'http://localhost:3000',
+  'http://localhost:3003',
+  'http://localhost:3002',
   'http://localhost:3001',
+  'http://localhost:3000',
 ];
