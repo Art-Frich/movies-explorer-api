@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+const { JWT_SECRET } = require('../configEnv');
 const { NOT_AUTH_TEXT } = require('../helpers/constants');
 const AuthError = require('../castomErrors/AuthError');
 
@@ -10,10 +11,9 @@ module.exports = (req, res, next) => {
 
   try {
     const token = req.cookies.jwt;
-    const { NODE_ENV, JWT_SECRET } = process.env;
 
     // .verify выкинет ошибку при несоответствии
-    payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret');
+    payload = jwt.verify(token, JWT_SECRET);
   } catch (_) {
     throw err;
   }
