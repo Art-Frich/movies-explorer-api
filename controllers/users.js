@@ -4,7 +4,11 @@ const User = require('../models/userModel');
 const NotFoundUserError = require('../castomErrors/NotFoundErrors/NotFoundUserError');
 const UserAlreadyExistError = require('../castomErrors/UserAlreadyExistError');
 const {
-  SUCCES_CREATE_STATUS, MONGO_CONFLICT_STATUS, newCookieOptions, oldCookieOptions, LOGOUT_SUCC,
+  SUCCES_CREATE_STATUS,
+  MONGO_CONFLICT_STATUS,
+  newCookieOptions,
+  oldCookieOptions,
+  LOGOUT_SUCC,
 } = require('../helpers/constants');
 const UncorrectDataError = require('../castomErrors/UncorrectDataError');
 
@@ -14,26 +18,34 @@ module.exports.getUserData = (req, res, next) => {
 
 module.exports.updUserData = (req, res, next) => {
   const { name, email } = req.body;
-  checkHandleSend(User.findByIdAndUpdate(
-    req.user._id,
-    { name, email },
-    { new: true, runValidators: true },
-  ), res, next, NotFoundUserError);
+  checkHandleSend(
+    User.findByIdAndUpdate(
+      req.user._id,
+      { name, email },
+      { new: true, runValidators: true },
+    ),
+    res,
+    next,
+    NotFoundUserError,
+  );
 };
 
 module.exports.createUser = (req, res, next) => {
-  const {
-    name, email, password,
-  } = req.body;
+  const { name, email, password } = req.body;
 
-  bcrypt.hash(password, 16)
+  bcrypt
+    .hash(password, 16)
     .then((hash) => User.create({
-      name, email, password: hash,
+      name,
+      email,
+      password: hash,
     }))
     .then((newUser) => {
       res.status(SUCCES_CREATE_STATUS).send({
         data: {
-          _id: newUser._id, name, email,
+          _id: newUser._id,
+          name,
+          email,
         },
       });
     })
@@ -54,7 +66,7 @@ module.exports.login = (req, res, next) => {
     .then((user) => {
       const token = tokenCreate(user._id);
       res.cookie('jwt', token, newCookieOptions);
-      res.send({ _id: user._id });
+      res.send({ data: { _id: user._id, name: user.name, email: user.email } });
     })
     .catch(next);
 };

@@ -4,7 +4,7 @@ module.exports.minLen = 2;
 module.exports.maxLen = 30;
 
 // eslint-disable-next-line no-useless-escape
-module.exports.regExpUrl = /^(http|https):\/\/[\w\-._~:/?#[\]\\@!\$&'()\*\+,;=]+\.[\w\/]{2,}#*$/;
+module.exports.regExpUrl = /^(http|https):\/\/(www\.)?[\w\-._~:/?#[\]\\@!\$&'()\*\+,;=]+\.[\w\/]{2,}#*$|(http|https):\/\/(www\.)?youtube\.com\/watch\?v=[\w-]+/;
 module.exports.regExpEmail = /[\w]+@[\w]+\.[a-z]{2,}/;
 module.exports.regExpObjectId = /^[\w]{24}$/;
 
@@ -39,7 +39,7 @@ module.exports.newCookieOptions = {
   maxAge: 1000 * 3600 * 24 * 7,
   credentials: true,
   httpOnly: true,
-};// 7 day
+}; // 7 day
 
 module.exports.oldCookieOptions = {
   maxAge: 0,
@@ -53,4 +53,6 @@ module.exports.allowedCors = [
   'http://localhost:3002',
   'http://localhost:3001',
   'http://localhost:3000',
+  'https://search-your-movies.nomoredomainsicu.ru/',
+  'http://search-your-movies.nomoredomainsicu.ru/',
 ];

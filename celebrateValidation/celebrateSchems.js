@@ -1,6 +1,6 @@
 const { Joi } = require('celebrate');
 const {
-  nameSchema, emailSchema, linkSchema, reqStrSchema, reqNumSchema, objectIdSchema,
+  nameSchema, emailSchema, linkSchema, reqStrSchema, reqNumSchema, objectIdSchema, objectImgSchema,
 } = require('./celebrateValidateParams');
 
 module.exports.signinSchema = {
