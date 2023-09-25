@@ -8,6 +8,7 @@
     "dev_i": "nodemon --inspect app.js",
     "start": "node app.js",
     "lint": "npx eslint .",
+    "lint-fix": "npx eslint . --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

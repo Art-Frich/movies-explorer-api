@@ -39,6 +39,8 @@ module.exports.newCookieOptions = {
   maxAge: 1000 * 3600 * 24 * 7,
   credentials: true,
   httpOnly: true,
+  secure: true,
+  sameSite: 'None',
 }; // 7 day
 
 module.exports.oldCookieOptions = {
@@ -53,6 +55,6 @@ module.exports.allowedCors = [
   'http://localhost:3002',
   'http://localhost:3001',
   'http://localhost:3000',
-  'https://search-your-movies.nomoredomainsicu.ru/',
-  'http://search-your-movies.nomoredomainsicu.ru/',
+  'https://search-your-movies.nomoredomainsicu.ru',
+  'http://search-your-movies.nomoredomainsicu.ru',
 ];

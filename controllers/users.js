@@ -32,9 +32,13 @@ module.exports.updUserData = (req, res, next) => {
 
 module.exports.createUser = (req, res, next) => {
   const { name, email, password } = req.body;
-
-  bcrypt
-    .hash(password, 16)
+  User.findOne({ email })
+    .then((data) => {
+      if (data) {
+        throw new UserAlreadyExistError();
+      }
+    })
+    .then(() => bcrypt.hash(password, 16))
     .then((hash) => User.create({
       name,
       email,
